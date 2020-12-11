@@ -3,6 +3,7 @@ package com.alannek.tasks;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -17,36 +18,29 @@ public class Day1 implements SolvableIf
 
     List< Integer > entries;
 
-    @Override
-    public String solve( String aInput )
-    {
-        processInput( aInput );
-        return "part one: " + solvePartOne() + ", part two: " + solvePartTwo();
-    }
-
-    private void processInput( String aInput )
+    public Day1( String aInput )
     {
         entries = Arrays.stream( aInput.split( "\n" ) )
             .map( Integer::parseInt )
             .collect( Collectors.toList() );
     }
 
-    private String solvePartOne()
+    public Optional< Integer > solvePartOne()
     {
         HashSet< Integer > uniqueEntries = new HashSet<>( entries );
-        for( int i = 0; i < entries.size(); i++ )
+        for( Integer aEntry : entries )
         {
-            if( uniqueEntries.contains( 2020 - entries.get( i ) ) )
+            if( uniqueEntries.contains( 2020 - aEntry ) )
             {
-                return String.valueOf( entries.get( i ) * (2020 - entries.get( i )) );
+                return Optional.of( aEntry * (2020 - aEntry) );
             }
 
         }
 
-        return "Solution not found";
+        return Optional.empty();
     }
 
-    private String solvePartTwo()
+    public Optional< Integer > solvePartTwo()
     {
         for( int i = 0; i < entries.size() - 2; i++ )
         {
@@ -57,14 +51,14 @@ public class Day1 implements SolvableIf
             {
                 if( sumOfPairs.contains( currentSum - entries.get( j ) ) )
                 {
-                    return String
-                        .valueOf( entries.get( i ) * entries.get( j ) * (currentSum - entries.get( j )) );
+                    return Optional
+                        .of( entries.get( i ) * entries.get( j ) * (currentSum - entries.get( j )) );
                 }
                 sumOfPairs.add( entries.get( j ) );
             }
 
         }
-        return "Solution not found";
+        return Optional.empty();
     }
 
 }
