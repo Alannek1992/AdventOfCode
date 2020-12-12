@@ -11,7 +11,7 @@ import java.util.Optional;
  */
 public interface SolvableIf
 {
-    Optional< Integer > solvePartOne();
+    Integer solvePartOne();
 
-    Optional< Integer > solvePartTwo();
+    Integer solvePartTwo();
 }

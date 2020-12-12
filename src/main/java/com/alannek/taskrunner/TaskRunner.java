@@ -3,7 +3,6 @@ package com.alannek.taskrunner;
 import java.lang.reflect.Constructor;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Optional;
 
 import com.alannek.tasks.SolvableIf;
 
@@ -20,15 +19,12 @@ public class TaskRunner
     public static void main( String[] args )
     {
 
-        int solvedDays = 1;
-        for( int i = 1; i == solvedDays; i++ )
+        int solvedDays = 2;
+        for( int i = 1; i <= solvedDays; i++ )
         {
             SolvableIf task = getTask( i );
-            Optional< Integer > partOne = task.solvePartOne();
-            Optional< Integer > partTwo = task.solvePartTwo();
-            System.out.println(
-                "Day" + i + " solution: first part -> " + (partOne.isEmpty() ? "Not Found" : partOne.get())
-                    + ", second part -> " + (partTwo.isEmpty() ? "Not Found" : partTwo.get()) );
+            System.out.println( "Day" + i + " solution: first part -> " + task.solvePartOne()
+                + ", second part -> " + task.solvePartTwo() );
 
         }
     }

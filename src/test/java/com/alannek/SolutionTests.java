@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.alannek.tasks.Day1;
+import com.alannek.tasks.Day2;
 import com.alannek.tasks.SolvableIf;
 
 /**
@@ -25,11 +26,16 @@ class SolutionTests
 
     }
 
+    @Test
+    void dayTwo()
+    {
+        String input = "1-3 a: abcde\n" + "1-3 b: cdefg\n" + "2-9 c: ccccccccc";
+        doTest( new Day2( input ), 2, 1 );
+    }
+
     private void doTest( SolvableIf aDay, Integer partOneExpectedValue, Integer partTwoExpectedValue )
     {
-        assertEquals( partOneExpectedValue, aDay.solvePartOne()
-            .orElse( 0 ) );
-        assertEquals( partTwoExpectedValue, aDay.solvePartTwo()
-            .orElse( 0 ) );
+        assertEquals( partOneExpectedValue, aDay.solvePartOne() );
+        assertEquals( partTwoExpectedValue, aDay.solvePartTwo() );
     }
 }

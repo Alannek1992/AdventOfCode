@@ -3,7 +3,6 @@ package com.alannek.tasks;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -25,22 +24,24 @@ public class Day1 implements SolvableIf
             .collect( Collectors.toList() );
     }
 
-    public Optional< Integer > solvePartOne()
+    @Override
+    public Integer solvePartOne()
     {
         HashSet< Integer > uniqueEntries = new HashSet<>( entries );
         for( Integer aEntry : entries )
         {
             if( uniqueEntries.contains( 2020 - aEntry ) )
             {
-                return Optional.of( aEntry * (2020 - aEntry) );
+                return aEntry * (2020 - aEntry);
             }
 
         }
 
-        return Optional.empty();
+        return null;
     }
 
-    public Optional< Integer > solvePartTwo()
+    @Override
+    public Integer solvePartTwo()
     {
         for( int i = 0; i < entries.size() - 2; i++ )
         {
@@ -51,14 +52,13 @@ public class Day1 implements SolvableIf
             {
                 if( sumOfPairs.contains( currentSum - entries.get( j ) ) )
                 {
-                    return Optional
-                        .of( entries.get( i ) * entries.get( j ) * (currentSum - entries.get( j )) );
+                    return entries.get( i ) * entries.get( j ) * (currentSum - entries.get( j ));
                 }
                 sumOfPairs.add( entries.get( j ) );
             }
 
         }
-        return Optional.empty();
+        return null;
     }
 
 }
