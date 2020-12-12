@@ -7,6 +7,9 @@ import java.util.function.Predicate;
 
 import org.javatuples.Triplet;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
  * Day two task
  *
@@ -26,47 +29,27 @@ public class Day2 implements SolvableIf
     @Override
     public Integer solvePartOne()
     {
-        Integer validPasswordsCount = 0;
-        for( String entry : entries )
-        {
 
-            Triplet< Integer, Integer, Character > rules = prepareTriplet( entry );
+        return execute( predicateInput -> {
 
-            String password = entry.substring( entry.indexOf( ":" ) + 2 );
+            IntPredicate intPredicate =
+                n -> n >= predicateInput.rules.getValue0() && n <= predicateInput.rules.getValue1();
 
-            IntPredicate predicate = n -> n >= rules.getValue0() && n <= rules.getValue1();
+            return intPredicate
+                .test( predicateInput.password.replaceAll( "[^" + predicateInput.rules.getValue2() + "]", "" )
+                    .length() );
+        } );
 
-            if( predicate.test( password.replaceAll( "[^" + rules.getValue2() + "]", "" )
-                .length() ) )
-            {
-                validPasswordsCount++;
-            }
-
-        }
-
-        return validPasswordsCount;
     }
 
     @Override
     public Integer solvePartTwo()
     {
-        Integer validPasswordsCount = 0;
-        for( String entry : entries )
-        {
-            Triplet< Integer, Integer, Character > rules = prepareTriplet( entry );
-            String password = entry.substring( entry.indexOf( ":" ) + 2 );
-            Predicate< Character > predicate1 = n -> password.charAt( rules.getValue0() - 1 ) == n;
+        return execute( predicateInput -> predicateInput.password
+            .charAt( predicateInput.rules.getValue0() - 1 ) == predicateInput.rules.getValue2()
+            ^ predicateInput.password.charAt( predicateInput.rules.getValue1() - 1 ) == predicateInput.rules
+                .getValue2() );
 
-            Predicate< Character > predicate2 = n -> password.charAt( rules.getValue1() - 1 ) == n;
-
-            if( predicate1.test( rules.getValue2() ) ^ predicate2.test( rules.getValue2() ) )
-            {
-                validPasswordsCount++;
-            }
-
-        }
-
-        return validPasswordsCount;
     }
 
     private Triplet< Integer, Integer, Character > prepareTriplet( String aEntry )
@@ -77,5 +60,31 @@ public class Day2 implements SolvableIf
         char rule = aEntry.charAt( aEntry.indexOf( " " ) + 1 );
         return Triplet.with( Integer.parseInt( minMax[ 0 ] ), Integer.parseInt( minMax[ 1 ] ), rule );
     }
+
+    private Integer execute( Predicate< PredicateInput > aPredicate )
+    {
+        Integer validPasswordsCount = 0;
+        for( String entry : entries )
+        {
+
+            Triplet< Integer, Integer, Character > rules = prepareTriplet( entry );
+            String password = entry.substring( entry.indexOf( ":" ) + 2 );
+
+            if( aPredicate.test( new PredicateInput( rules, password ) ) )
+            {
+                validPasswordsCount++;
+            }
+        }
+        return validPasswordsCount;
+    }
+
+}
+
+@Data
+@AllArgsConstructor
+class PredicateInput
+{
+    Triplet< Integer, Integer, Character > rules;
+    String password;
 
 }
