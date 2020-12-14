@@ -19,7 +19,7 @@ public class TaskRunner
     public static void main( String[] args )
     {
 
-        int solvedDays = 2;
+        int solvedDays = 4;
         for( int i = 1; i <= solvedDays; i++ )
         {
             SolvableIf task = getTask( i );
@@ -40,6 +40,7 @@ public class TaskRunner
         }
         catch( Exception e )
         {
+            e.printStackTrace();
             throw new RuntimeException( "Cannot create an instance of a task!" );
         }
 
