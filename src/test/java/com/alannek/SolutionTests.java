@@ -10,6 +10,9 @@ import com.alannek.tasks.Day1;
 import com.alannek.tasks.Day2;
 import com.alannek.tasks.Day3;
 import com.alannek.tasks.Day4;
+import com.alannek.tasks.Day5;
+import com.alannek.tasks.Day6;
+import com.alannek.tasks.Day7;
 import com.alannek.tasks.SolvableIf;
 
 /**
@@ -73,6 +76,50 @@ class SolutionTests
             + "iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719";
 
         doTest( new Day4( validInputPartTwo )::solvePartTwo, 4 );
+
+    }
+
+    @Test
+    void dayFive()
+    {
+        String input = "FBFBBFFRLR\nBFFFBBFRRR\nFFFBBBFRRR\nBBFFBBFRLL";
+        doTest( new Day5( input )::solvePartOne, 820 );
+    }
+
+    @Test
+    void daySix()
+    {
+        String input = "abc\n" + "\n" + "a\n" + "b\n" + "c\n" + "\n" + "ab\n" + "ac\n" + "\n" + "a\n" + "a\n"
+            + "a\n" + "a\n" + "\n" + "b";
+
+        doTest( new Day6( input ), 11, 6 );
+    }
+
+    @Test
+    void daySeven()
+    {
+        String input = "light red bags contain 1 bright white bag, 2 muted yellow bags.\n"
+            + "dark orange bags contain 3 bright white bags, 4 muted yellow bags.\n"
+            + "bright white bags contain 1 shiny gold bag.\n"
+            + "muted yellow bags contain 2 shiny gold bags, 9 faded blue bags.\n"
+            + "shiny gold bags contain 1 dark olive bag, 2 vibrant plum bags.\n"
+            + "dark olive bags contain 3 faded blue bags, 4 dotted black bags.\n"
+            + "vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.\n"
+            + "faded blue bags contain no other bags.\n" + "dotted black bags contain no other bags.";
+
+        doTest( new Day7( input ), 4, 32 );
+
+        String inputPartTwo = "shiny gold bags contain 2 dark red bags.\n"
+            + "dark red bags contain 2 dark orange bags.\n" + "dark orange bags contain 2 dark yellow bags.\n"
+            + "dark yellow bags contain 2 dark green bags.\n" + "dark green bags contain 2 dark blue bags.\n"
+            + "dark blue bags contain 2 dark violet bags.\n" + "dark violet bags contain no other bags.";
+
+        doTest( new Day7( inputPartTwo )::solvePartTwo, 126 );
+    }
+
+    @Test
+    void dayEight()
+    {
 
     }
 

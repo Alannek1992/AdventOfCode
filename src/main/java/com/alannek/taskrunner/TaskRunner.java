@@ -19,7 +19,7 @@ public class TaskRunner
     public static void main( String[] args )
     {
 
-        int solvedDays = 4;
+        int solvedDays = 7;
         for( int i = 1; i <= solvedDays; i++ )
         {
             SolvableIf task = getTask( i );
