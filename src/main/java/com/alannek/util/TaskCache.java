@@ -25,7 +25,7 @@ public class TaskCache
     {
         cache = CacheBuilder.newBuilder()
             .maximumSize( 1000 )
-            .expireAfterWrite( 10, TimeUnit.SECONDS )
+            .expireAfterWrite( 100, TimeUnit.SECONDS )
             .build();
     };
 

@@ -7,12 +7,15 @@ import java.util.function.Supplier;
 import org.junit.jupiter.api.Test;
 
 import com.alannek.tasks.Day1;
+import com.alannek.tasks.Day10;
 import com.alannek.tasks.Day2;
 import com.alannek.tasks.Day3;
 import com.alannek.tasks.Day4;
 import com.alannek.tasks.Day5;
 import com.alannek.tasks.Day6;
 import com.alannek.tasks.Day7;
+import com.alannek.tasks.Day8;
+import com.alannek.tasks.Day9;
 import com.alannek.tasks.SolvableIf;
 
 /**
@@ -120,7 +123,34 @@ class SolutionTests
     @Test
     void dayEight()
     {
+        String input = "nop +0\n" + "acc +1\n" + "jmp +4\n" + "acc +3\n" + "jmp -3\n" + "acc -99\n"
+            + "acc +1\n" + "jmp -4\n" + "acc +6";
 
+        doTest( new Day8( input ), 5, 8 );
+    }
+
+    @Test
+    void dayNine()
+    {
+        String input = "35\n" + "20\n" + "15\n" + "25\n" + "47\n" + "40\n" + "62\n" + "55\n" + "65\n" + "95\n"
+            + "102\n" + "117\n" + "150\n" + "182\n" + "127\n" + "219\n" + "299\n" + "277\n" + "309\n" + "576";
+
+        doTest( new Day9( 5, input ), 127, 62 );
+    }
+
+    @Test
+    void dayTen()
+    {
+        String input = "28\n" + "33\n" + "18\n" + "42\n" + "31\n" + "14\n" + "46\n" + "20\n" + "48\n" + "47\n"
+            + "24\n" + "23\n" + "49\n" + "45\n" + "19\n" + "38\n" + "39\n" + "11\n" + "1\n" + "32\n" + "25\n"
+            + "35\n" + "8\n" + "17\n" + "7\n" + "9\n" + "4\n" + "2\n" + "34\n" + "10\n" + "3";
+
+        doTest( new Day10( input ), 220, 19208 );
+
+        String inputPartTwo =
+            "16\n" + "10\n" + "15\n" + "5\n" + "1\n" + "11\n" + "7\n" + "19\n" + "6\n" + "12\n" + "4";
+
+        doTest( new Day10( inputPartTwo )::solvePartTwo, 8 );
     }
 
     private void doTest( SolvableIf aDay, Integer aPartOneExpectedValue, Integer aPartTwoExpectedValue )
