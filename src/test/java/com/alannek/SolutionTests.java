@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.alannek.tasks.Day1;
 import com.alannek.tasks.Day10;
+import com.alannek.tasks.Day11;
 import com.alannek.tasks.Day2;
 import com.alannek.tasks.Day3;
 import com.alannek.tasks.Day4;
@@ -151,6 +152,15 @@ class SolutionTests
             "16\n" + "10\n" + "15\n" + "5\n" + "1\n" + "11\n" + "7\n" + "19\n" + "6\n" + "12\n" + "4";
 
         doTest( new Day10( inputPartTwo )::solvePartTwo, 8 );
+    }
+
+    @Test
+    void dayEleven()
+    {
+        String input = "L.LL.LL.LL\n" + "LLLLLLL.LL\n" + "L.L.L..L..\n" + "LLLL.LL.LL\n" + "L.LL.LL.LL\n"
+            + "L.LLLLL.LL\n" + "..L.L.....\n" + "LLLLLLLLLL\n" + "L.LLLLLL.L\n" + "L.LLLLL.LL";
+
+        doTest( new Day11( input ), 37, 26 );
     }
 
     private void doTest( SolvableIf aDay, Integer aPartOneExpectedValue, Integer aPartTwoExpectedValue )
